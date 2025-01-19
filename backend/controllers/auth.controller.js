@@ -21,13 +21,23 @@ export const signup = async (req, res) => {
         if(userExists){
             return res.status(400).json({error: "User already exists"});
         }
-        else {
-            const user = new User({
+        
+         const newUser = new User({
                 username,
                 fullname,
-                password,
+                password: hashpassword,
                 gender
+        });
+    
+        
+        if(newUser)
+        {
+            await user.save();
+            res.status(201).json({ message: "User registered successfully" });
         }
+        
+        
+
 
 
     } catch (error) {
