@@ -45,3 +45,46 @@ export const signup = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+
+
+
+
+export const login = async (req, res) => {
+  try {
+        const { username, password } = req.body;
+        if (!username || !password) {
+          return res.status(400).json({ error: "All fields are required" });
+        }
+        const user = await User.findOne({username});
+        if (!user) {
+          return res.status(400).json({ error: "User not Found" });
+        }
+        if (user) {
+         const isPasswordCorrect = await bcrypt.compare(password, user.password);
+          if (!isPasswordCorrect) {
+            res.status(400).json({ error: "Invalid credentials" });
+          }
+ generateToken({ res, userId: user._id });
+ res.status(200).json({ message: "Logged in successfully" });
+        }
+
+  } catch (error) {
+     console.log("Login auth controller error", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+
+
+
+export const logout = async (req, res) => {
+  try {
+    res.clearCookie("access_token");
+
+    res.status(200).json({ message: "Logged out successfully" });
+  } catch (error) {
+     console.log("Logout auth controller error", error);
+     res.status(500).json({ error: "Internal server error" });
+  }
+}
