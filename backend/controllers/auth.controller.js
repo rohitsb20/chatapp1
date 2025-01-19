@@ -1,3 +1,4 @@
+import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import generateToken from "../utils/token.js";
 
@@ -19,6 +20,8 @@ export const signup = async (req, res) => {
         .json({ error: "Password must be atleast 6 characters" });
     }
     const hashpassword = await bcrypt.hash(password, 10);
+    const BoyprofilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
+    const GirlprofilePic = `https://avatar.iran.liara.run/public/girld?username=${username}`;
     const userExists = await User.findOne({ username });
     if (userExists) {
       return res.status(400).json({ error: "User already exists" });
@@ -29,11 +32,12 @@ export const signup = async (req, res) => {
       fullname,
       password: hashpassword,
       gender,
+      profilePicture : gender === "male" ? BoyprofilePic : GirlprofilePic,
     });
 
     if (newUser) {
-        generateToken({res, userId: newUser._id});
-      await user.save();
+      generateToken({ res, userId: newUser._id });
+      await newUser.save();
       res.status(201).json({ message: "User registered successfully" });
     }
   } catch (error) {
