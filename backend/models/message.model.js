@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import mongioose from "mongoose";
+
 
 const messageSchema = new mongoose.Schema(
   {
