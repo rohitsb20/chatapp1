@@ -1,6 +1,6 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
-import generateToken from "../utils/token.js";
+import generateTokenAndSetCookie from "../utils/token.js";
 
 export const signup = async (req, res) => {
   try {
@@ -36,7 +36,7 @@ export const signup = async (req, res) => {
     });
 
     if (newUser) {
-      generateToken({ res, userId: newUser._id });
+ generateTokenAndSetCookie(newUser._id, res);
       await newUser.save();
       res.status(201).json({ message: "User registered successfully" });
     }
@@ -65,7 +65,7 @@ export const login = async (req, res) => {
           if (!isPasswordCorrect) {
             res.status(400).json({ error: "Invalid credentials" });
           }
- generateToken({ res, userId: user._id });
+        generateTokenAndSetCookie(user._id, res);
  res.status(200).json({ message: "Logged in successfully" });
         }
 
