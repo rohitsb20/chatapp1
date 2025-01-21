@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import dbconnect from './database/dbConnect.js';
 import authRoutes from './routes/auth.routes.js';
 import messageRoutes from './routes/message.routes.js';
+import uerRoutes from "./routes/user.routes.js";
 
 const app = express();
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(cookieParser());
 
 app.use('/api/auth', authRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/messages", userRoutes);
 
 
 app.listen(3000, () => {
