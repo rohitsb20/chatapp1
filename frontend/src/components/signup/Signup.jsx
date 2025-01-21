@@ -1,15 +1,12 @@
 
-
 export default function SignupPage() {
- 
-
   return (
     <div className="min-h-screen  md:w-1/2 flex items-center justify-center ">
       <div className="bg-white shadow-xl rounded-xl w-full max-w-xl p-8">
         <h1 className="text-2xl font-semibold text-center mb-6">
           Signup to Talkio
         </h1>
-        <form >
+        <form>
           <div className="space-y-4">
             <div>
               <label
@@ -25,7 +22,6 @@ export default function SignupPage() {
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your full name"
-            
               />
             </div>
             <div>
@@ -42,7 +38,6 @@ export default function SignupPage() {
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Choose a username"
-               
               />
             </div>
             <div>
@@ -56,7 +51,6 @@ export default function SignupPage() {
                     name="gender"
                     type="radio"
                     value="male"
-             
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                   />
                   <label
@@ -72,8 +66,6 @@ export default function SignupPage() {
                     name="gender"
                     type="radio"
                     value="female"
-                  
-                  
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                   />
                   <label
@@ -99,7 +91,6 @@ export default function SignupPage() {
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your password"
-             
               />
             </div>
             <div>
@@ -116,7 +107,6 @@ export default function SignupPage() {
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Confirm your password"
-               
               />
             </div>
           </div>
