@@ -4,7 +4,7 @@ export default function SignupPage() {
  
 
   return (
-    <div className="min-h-screen flex items-center justify-center ">
+    <div className="min-h-screen  md:w-1/2 flex items-center justify-center ">
       <div className="bg-white shadow-xl rounded-xl w-full max-w-xl p-8">
         <h1 className="text-2xl font-semibold text-center mb-6">
           Signup to Talkio
