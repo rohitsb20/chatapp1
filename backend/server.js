@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import dbconnect from './database/dbConnect.js';
 import authRoutes from './routes/auth.routes.js';
 import messageRoutes from './routes/message.routes.js';
-import uerRoutes from "./routes/user.routes.js";
+import userRoutes from "./routes/user.routes.js";
 
 const app = express();
 dotenv.config();
