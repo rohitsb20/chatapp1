@@ -1,3 +1,4 @@
+import Signup  from "./components/signup/Signup"
 
 
 function App() {
@@ -5,9 +6,11 @@ function App() {
 
   return (
     <>
-      <h1>hello </h1>
+      <div className="bg-white w-screen h-screen flex justify-center items-center">
+<Signup />
+      </div>
     </>
-  )
+  );
 }
 
 export default App
