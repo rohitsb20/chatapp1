@@ -1,6 +1,6 @@
 
 
-export const sendMessage = async (req, res) => {
+ const sendMessage = async (req, res) => {
     try {
         const {message}  = req.body;
         const {id : receiverId} = req.params;
@@ -13,3 +13,5 @@ export const sendMessage = async (req, res) => {
         res.status(500).json({ error : "internal server error" });
     }
 }
+
+export default sendMessage;
