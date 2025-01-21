@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 import dbconnect from './database/dbConnect.js';
 import authRoutes from './routes/auth.routes.js';
+import messageRoutes from './routes/message.routes.js';
 
 const app = express();
 dotenv.config();
