@@ -1,9 +1,11 @@
 import  express from 'express';
-import {getSidebarUsers} from '../controllers/user.controller.js';
+import { getSidebarUsers } from 
+'../controllers/user.controller.js';
+import protectRoute from '../middleware/protectRoute.js';
 
 const router = express.Router();
 
 
-router.get("/", getSidebarUsers);
+router.get("/", protectRoute,getSidebarUsers);
 
 export default router;
