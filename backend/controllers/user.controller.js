@@ -4,7 +4,8 @@ export const getSidebarUsers = async (req, res) => {
         
         const loggedUserID = req.user._id;
 
-        const filterUsers = await User.find({ _id: { $ne: loggedUserID } });
+        const filterUsers = await User.find({ _id: { $ne: loggedUserID } })
+        .select("-password");
 res.status(200).json(filterUsers);
 
     } catch (error) {
