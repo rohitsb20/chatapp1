@@ -1,7 +1,7 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
 
-const sendMessage = async (req, res) => {
+export const sendMessage = async (req, res) => {
   try {
     const { message } = req.body;
     const { id: receiverId } = req.params;
@@ -44,4 +44,25 @@ const sendMessage = async (req, res) => {
   }
 };
 
-export default sendMessage;
+
+export const getMessages = async (req, res) => {
+
+    try {
+        const {id:userToChatId} = req.params;
+        const senderId = req.user.id;
+
+        const conversation = await Conversation.findOne({
+            participants: {
+                $all: [senderId, userToChatId]
+            }
+        }).populate("messages");
+
+        res.status(200).json(conversation.messages);
+        
+    } catch (error) {
+        console.log("error in get Messages Controller");
+        res.status(500).json({ error: "internal server error" });
+    }
+}
+
+
