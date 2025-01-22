@@ -1,4 +1,4 @@
-import Signup  from "./components/signup/Signup"
+import Feature from "../src/components/feature/Feature"
 
 
 function App() {
@@ -6,8 +6,10 @@ function App() {
 
   return (
     <>
-      <div className="bg-white w-screen h-screen flex justify-center items-center">
-<Signup />
+      <div className="bg-white w-screen h-screen ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center h-full">
+<Feature/>
+        </div>
       </div>
     </>
   );
