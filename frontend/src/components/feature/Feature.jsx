@@ -1,13 +1,15 @@
 import { MessageInput } from "../messageInput/MessageInput";
 import Messages from "../messages/Messages";
 import Nochat from "../NoChat/Nochat";
+import  useConversation  from "../../zustand/useConversation";
 import Searchbox from "../Searchbox";
 import Sidebar from "../sidebar/Sidebar";
 
 
 export default function Feature() {
 
-  const nochat = true;
+ const { selectedConversation } = useConversation();
+
 
   return (
     <div className=" w-full h-full p-10">
@@ -31,7 +33,7 @@ export default function Feature() {
 
           {/* MESAAGES CONTAINER  */}
 
-          {nochat ? (
+          {!selectedConversation ? (
             <Nochat />
           ) : (
             <div className="">
