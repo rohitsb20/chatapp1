@@ -1,14 +1,30 @@
 import { Link } from "react-router-dom";
+import useLogin from "../../hooks/useLogin";
 
-
+import { useState } from "react";
 export default function LoginPage() {
+
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { login } = useLogin();
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login({ username, password });
+  }
+
+
+
   return (
     <div className="min-h-screen   md:w-1/2 flex items-center justify-center ">
       <div className="bg-white shadow-xl rounded-xl w-full max-w-xl p-8">
         <h1 className="text-2xl font-semibold text-center mb-6">
           Login to Talkio
         </h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
               <label
@@ -23,6 +39,8 @@ export default function LoginPage() {
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div>
@@ -38,6 +56,8 @@ export default function LoginPage() {
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>

@@ -13,11 +13,17 @@ function App() {
       <div className="bg-white w-screen h-screen ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex  justify-center h-full">
           <Routes>
-            <Route path="/" element={<Feature />} />
-            <Route path="/login" element={<Login/>} />
-            <Route path="/signup" element={authUser ? <Navigate to="/"/> : <Signup />} />
+            <Route path="/" element={authUser ? <Feature /> : <Navigate to={"/login"}/>} />
+            <Route
+              path="/login"
+              element={authUser ? <Navigate to="/" /> : <Login />}
+            />
+            <Route
+              path="/signup"
+              element={authUser ? <Navigate to="/" /> : <Signup />}
+            />
           </Routes>
-          <Toaster/>
+          <Toaster />
         </div>
       </div>
     </>

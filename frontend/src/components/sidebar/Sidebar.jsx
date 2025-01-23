@@ -1,6 +1,7 @@
-import { BiLogOut } from "react-icons/bi";
+
 import Searchbox from "../Searchbox";
 import ConversationList from "../sidebar/ConversationList";
+import LogoutButton from "../LogoutButton";
 
 export default function Sidebar() {
   return (
@@ -25,16 +26,7 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <div  className="mt-40">
-        <button
-          className=" text-black text-xl flex 
-          items-center space-x-2
-           
-         rounded-full w-full"
-        >
-          <BiLogOut /> <span className="text-lg hidden md:block">Logout</span>
-        </button>
-      </div>
+      <LogoutButton />
     </div>
   );
 }

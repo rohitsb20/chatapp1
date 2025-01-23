@@ -7,7 +7,7 @@ import Sidebar from "../sidebar/Sidebar";
 
 export default function Feature() {
 
-  const nochat = false;
+  const nochat = true;
 
   return (
     <div className=" w-full h-full p-10">
