@@ -13,7 +13,7 @@ export default function Feature() {
     <div className=" w-full h-full p-10">
       <div
         className="border-2 rounded-xl flex  gap-x-4
-      w-full h-full  "
+      w-full h-full"
       >
         <Sidebar />
 
