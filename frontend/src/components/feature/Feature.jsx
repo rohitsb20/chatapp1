@@ -1,10 +1,14 @@
 import { MessageInput } from "../messageInput/MessageInput";
 import Messages from "../messages/Messages";
+import Nochat from "../NoChat/Nochat";
 import Searchbox from "../Searchbox";
 import Sidebar from "../sidebar/Sidebar";
 
 
 export default function Feature() {
+
+  const nochat = false;
+
   return (
     <div className=" w-full h-full p-10">
       <div
@@ -27,23 +31,26 @@ export default function Feature() {
 
           {/* MESAAGES CONTAINER  */}
 
-          <div className="">
+          {nochat ? (
+            <Nochat />
+          ) : (
+            <div className="">
+              {/* HEADER  */}
+              <div className="flex items-center space-x-3 mb-4">
+                <h1>TO:</h1>
+                <p>JHON DOE</p>
+              </div>
 
-            {/* HEADER  */}
-            <div className="flex items-center space-x-3 mb-4">
-              <h1>TO:</h1>
-              <p>JHON DOE</p>
+              {/* MESSAGES  */}
+
+              <div className="flex flex-col h-96 overflow-auto md:min-w-[450px]">
+                <Messages />
+              </div>
+
+              {/* INPUT MESSAGE DIV  */}
+              <MessageInput />
             </div>
-
-            {/* MESSAGES  */}
-<div className="flex flex-col h-96 overflow-auto">
-  <Messages />
-</div>
-
-
-            {/* INPUT MESSAGE DIV  */}
-<MessageInput/>
-          </div>
+          )}
         </div>
 
         {/* MESSAGES DIV END */}
