@@ -1,13 +1,41 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import  signup  from "../../hooks/useSignup";
+import GenderCheckbox from "./GenderCheckbox";
+
+
 
 export default function SignupPage() {
+
+const [input, setInput] = useState({
+    fullName: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+    gender: "",
+})
+
+	const handleCheckboxChange = (gender) => {
+    setInput({ ...input, gender });
+  };
+
+const handleSubmit =  async (e) => {
+    e.preventDefault()
+  await  signup(input);
+    
+}
+
+
+
+
+
   return (
     <div className="min-h-screen  md:w-1/2 flex items-center justify-center ">
       <div className="bg-white shadow-xl rounded-xl w-full max-w-xl p-8">
         <h1 className="text-2xl font-semibold text-center mb-6">
           Signup to Talkio
         </h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
               <label
@@ -23,6 +51,10 @@ export default function SignupPage() {
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your full name"
+                value={input.fullName}
+                onChange={(e) =>
+                  setInput({ ...input, fullName: e.target.value })
+                }
               />
             </div>
             <div>
@@ -39,45 +71,16 @@ export default function SignupPage() {
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Choose a username"
+                value={input.username}
+                onChange={(e) =>
+                  setInput({ ...input, username: e.target.value })
+                }
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Gender
-              </label>
-              <div className="flex space-x-4">
-                <div className="flex items-center">
-                  <input
-                    id="male"
-                    name="gender"
-                    type="radio"
-                    value="male"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                  />
-                  <label
-                    htmlFor="male"
-                    className="ml-2 block text-sm text-gray-900"
-                  >
-                    Male
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    id="female"
-                    name="gender"
-                    type="radio"
-                    value="female"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                  />
-                  <label
-                    htmlFor="female"
-                    className="ml-2 block text-sm text-gray-900"
-                  >
-                    Female
-                  </label>
-                </div>
-              </div>
-            </div>
+            <GenderCheckbox
+              onCheckboxChange={handleCheckboxChange}
+              selectedGender={input.gender}
+            />
             <div>
               <label
                 htmlFor="password"
@@ -92,6 +95,10 @@ export default function SignupPage() {
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your password"
+                value={input.password}
+                onChange={(e) =>
+                  setInput({ ...input, password: e.target.value })
+                }
               />
             </div>
             <div>
@@ -108,6 +115,10 @@ export default function SignupPage() {
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Confirm your password"
+                value={input.confirmPassword}
+                onChange={(e) =>
+                  setInput({ ...input, confirmPassword: e.target.value })
+                }
               />
             </div>
           </div>
