@@ -6,7 +6,7 @@ import useGetConversation from "../../hooks/useGetConversation";
 
 export default function Sidebar() {
       const {conversations, loading} = useGetConversation()
- console.log(conversations);
+//  console.log(conversations);
  
       return (
         <div className="border-r-2 md:w-1/4  p-4 ">
@@ -18,7 +18,7 @@ export default function Sidebar() {
           <div className="flex flex-col gap-y-4  ">
             {conversations.map((conversation) => (
               <div key={conversation._id} className="flex justify-center md:border-2 p-2 rounded-xl">
-                <ConversationList  conversation={conversation} lastindex={conversations.length - 1}/>
+                <ConversationList  conversation={conversation} />
               </div>
             ))}
           </div>

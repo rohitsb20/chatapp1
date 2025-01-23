@@ -1,10 +1,27 @@
 /* eslint-disable react/prop-types */
+import useConversation from "../../zustand/useConversation";
 
 
-export default function ConversationList({ conversation, lastindex }) {
+export default function ConversationList({ conversation }) {
+
+
+const {selectedConversation,setSelectedConversation} = useConversation()
+
+
+const isSelected =
+ selectedConversation?._id === conversation._id
+
+
+
+
   return (
     <>
-      <div className="flex items-center space-x-2 ">
+      <div
+        onClick={() => setSelectedConversation(conversation)}
+        className={`flex items-center space-x-2 px-4 rounded border-2  ${
+          isSelected ? "bg-gray-200" : " "
+        }`}
+      >
         <div className="w-12 h-12">
           <img
             src={conversation.profilePicture}
@@ -16,7 +33,6 @@ export default function ConversationList({ conversation, lastindex }) {
           <h3 className="text-sm font-semibold">{conversation.username}</h3>
         </div>
       </div>
-      {!lastindex && <div className="divider my-0 py-0 h-1" />}
     </>
   );
 }
