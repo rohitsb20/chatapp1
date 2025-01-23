@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import useSignup from "../../hooks/useSignup";
+
 import GenderCheckbox from "./GenderCheckbox";
 
 
@@ -8,14 +9,14 @@ import GenderCheckbox from "./GenderCheckbox";
 export default function SignupPage() {
 
 const [input, setInput] = useState({
-    fullName: "",
-    username: "",
-    password: "",
-    confirmPassword: "",
-    gender: "",
-})
+  fullname: "",
+  username: "",
+  password: "",
+  confirmpassword: "",
+  gender: "",
+});
 
-const {loading, signup} = useSignup()
+const {signup} = useSignup()
 
 	const handleCheckboxChange = (gender) => {
     setInput({ ...input, gender });
@@ -24,6 +25,8 @@ const {loading, signup} = useSignup()
 const handleSubmit =  async (e) => {
     e.preventDefault()
   await  signup(input);
+  console.log(input);
+  
     
 }
 
@@ -41,7 +44,7 @@ const handleSubmit =  async (e) => {
           <div className="space-y-4">
             <div>
               <label
-                htmlFor="fullName"
+                htmlFor="fullname"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
                 Full Name
@@ -53,9 +56,9 @@ const handleSubmit =  async (e) => {
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your full name"
-                value={input.fullName}
+                value={input.fullname}
                 onChange={(e) =>
-                  setInput({ ...input, fullName: e.target.value })
+                  setInput({ ...input, fullname: e.target.value })
                 }
               />
             </div>
@@ -105,21 +108,21 @@ const handleSubmit =  async (e) => {
             </div>
             <div>
               <label
-                htmlFor="confirmPassword"
+                htmlFor="      confirmpassword"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
                 Confirm Password
               </label>
               <input
-                id="confirmPassword"
-                name="confirmPassword"
+                id="      confirmpassword"
+                name="      confirmpassword"
                 type="password"
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Confirm your password"
-                value={input.confirmPassword}
+                value={input.      confirmpassword}
                 onChange={(e) =>
-                  setInput({ ...input, confirmPassword: e.target.value })
+                  setInput({ ...input,       confirmpassword: e.target.value })
                 }
               />
             </div>
