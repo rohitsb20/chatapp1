@@ -20,11 +20,11 @@ const Message = ({ message }) => {
   const shakeClass = message.shouldShake ? "shake" : "";
 
   return (
-    <div className={`chat flex ${chatClass} `}>
+    <div className={`chat flex ${chatClass}  `}>
       <div className="chat-image avatar  ">
         <div className="w-full rounded-full  flex items-center   ">
           {fromMe ? (
-            <div className="flex space-x-4 p-4">
+            <div className="flex space-x-4 py-4 ">
               <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">
                 12:45
               </div>

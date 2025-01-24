@@ -14,7 +14,7 @@ const MessageContainer = () => {
 	
 
 	return (
-    <div className="md:min-w-[450px] flex flex-col">
+    <div className="md:min-w-[450px] flex flex-col w-full">
       {!selectedConversation ? (
         <NoChatSelected />
       ) : (
@@ -25,7 +25,7 @@ const MessageContainer = () => {
             <div className="md:hidden block mb-4">
               <SearchInput />
             </div>
-            <hr />
+          
             <span className="label-text">To:</span>{" "}
             <span className="text-gray-900 font-bold">
               {selectedConversation.fullname}
