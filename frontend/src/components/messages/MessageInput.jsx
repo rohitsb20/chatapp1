@@ -18,14 +18,14 @@ const MessageInput = () => {
       <div className="flex space-x-2 items-center   w-full">
         <input
           type="text"
-          className="border-2 text-sm rounded-lg block w-full p-2.5 
+          className="border-2 shadow-md text-sm rounded-lg block w-full p-2.5 
 					 bg-white  text-black"
           placeholder="Send a message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
 
-        <div className="flex items-center border-2 p-2.5">
+        <div className="flex items-center border-2 p-2.5 shadow-md">
           <button type="submit">
            
             {!loading ? (
