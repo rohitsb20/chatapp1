@@ -20,16 +20,17 @@ const MessageContainer = () => {
       ) : (
         <>
           {/* Header */}
-          <div className="border-b-2 shadow-sm  px-4 py-2 mb-2">
-        
+          <div className="  px-4 py-2 mb-2">
             <div className="md:hidden block mb-4">
               <SearchInput />
             </div>
-          
-            <span className="label-text">To:</span>{" "}
-            <span className="text-gray-900 font-bold">
-              {selectedConversation.fullname}
-            </span>
+
+            <div className="flex items-center gap-2 border-b-2 p-1">
+              <span className="label-text">To{' '}:</span>{" "}
+              <span className="text-gray-900 font-bold">
+                {selectedConversation.fullname}
+              </span>
+            </div>
           </div>
           <Messages />
           <MessageInput />
