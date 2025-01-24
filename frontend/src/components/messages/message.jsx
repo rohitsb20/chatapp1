@@ -1,34 +1,56 @@
 /* eslint-disable react/prop-types */
-import { useAuthContext } from "../../context/AuthContext";
-
+import useContext from "../../zustand/useContext";
 import useConversation from "../../zustand/useConversation";
 
 const Message = ({ message }) => {
-	const { authUser } = useAuthContext();
-	const { selectedConversation } = useConversation();
-	const fromMe = message.senderId === authUser._id;
+  const { authUser } = useContext();
 
-	const chatClassName = fromMe ? "chat-end" : "chat-start";
-	const profilePic = fromMe ? authUser.profilePicture : selectedConversation?.profilePicture;
-	const bubbleBgColor = fromMe ? "bg-blue-500" : "";
+  const { selectedConversation } = useConversation();
 
-	const shakeClass = message.shouldShake ? "shake" : "";
+  const fromMe = message.senderId === authUser._id;
 
-	return (
-    <div className={`chat ${chatClassName}`}>
-      <div className="chat-image avatar ">
-        <div className="w-full rounded-full  flex items-center gap-x-4 ">
-          <img alt="Tailwind CSS chat bubble component" className="w-10" src={profilePic} />
-          <div
-            className={`chat-bubble text-black  ${bubbleBgColor} ${shakeClass} pb-2`}
-          >
-            {message.message}
-          </div>
+  const chatClass = fromMe ? "justify-end" : "justify-start";
+
+  const chatUser = fromMe
+    ? authUser.username
+    : selectedConversation?.username;
+
+  const bubbleBgColor = fromMe ? "bg-blue-400" : "bg-gray-400";
+
+  const shakeClass = message.shouldShake ? "shake" : "";
+
+  return (
+    <div className={`chat flex ${chatClass} `}>
+      <div className="chat-image avatar  ">
+        <div className="w-full rounded-full  flex items-center   ">
+          {fromMe ? (
+            <div className="flex space-x-4 p-4">
+              <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">
+                12:45
+              </div>
+              <div
+                className={`chat-bubble ${chatClass} text-black rounded-xl 
+                   ${bubbleBgColor} ${shakeClass} p-2`}
+              >
+                {message.message}
+              </div>{" "}
+              <h1 className="text-sm font-bold ">{chatUser} :</h1>
+            </div>
+          ) : (
+            <div className="flex space-x-4">
+              <h1 className="text-sm font-bold ">{chatUser} :</h1>
+              <div
+                className={`chat-bubble ${chatClass} text-black
+                    ${bubbleBgColor} ${shakeClass} p-2 rounded-xl`}
+              >
+                {message.message}
+              </div>
+              <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">
+                12:45
+              </div>
+            </div>
+          )}
         </div>
-      </div>
-
-      <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">
-        12:45
       </div>
     </div>
   );

@@ -1,12 +1,13 @@
 import toast from 'react-hot-toast'
 import { useState } from 'react'
-import { useAuthContext } from '../context/AuthContext'
+// import { useAuthContext } from '../context/AuthContext'
+import useContext from '../zustand/useContext'
 
 const useSignup = () => {
 
     const [loading , setLoading] = useState(false)
 
-    const {setAuthUser} = useAuthContext()
+    const {setAuthUser} = useContext()
    
     const signup = async ({
       fullname,
@@ -40,6 +41,7 @@ const useSignup = () => {
         });
 
         const data = await res.json();
+    
         if(data.error) {
           throw new Error(data.error)
        
@@ -49,6 +51,8 @@ const useSignup = () => {
           , JSON.stringify(data));
         //context 
         setAuthUser(data);
+        
+        
 
       } catch (error) {
         toast.error(error.message);

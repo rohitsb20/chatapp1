@@ -8,7 +8,6 @@ export const signup = async (req, res) => {
 
     if (!username || !fullname || !password) {
       return res.status(400).json({ error: "All fields are required" });
-     
     }
 
     if (password !== confirmpassword) {
@@ -33,13 +32,18 @@ export const signup = async (req, res) => {
       fullname,
       password: hashpassword,
       gender,
-      profilePicture : gender === "male" ? BoyprofilePic : GirlprofilePic,
+      profilePicture: gender === "male" ? BoyprofilePic : GirlprofilePic,
     });
 
     if (newUser) {
- generateTokenAndSetCookie(newUser._id, res);
+      generateTokenAndSetCookie(newUser._id, res);
       await newUser.save();
-      res.status(201).json({ message: "User registered successfully" });
+      res.status(201).json({
+        _id: newUser._id,
+        fullName: newUser.fullName,
+        username: newUser.username,
+        profilePic: newUser.profilePic,
+      });
     }
   } catch (error) {
     console.log("signup auth controller error", error);
@@ -47,37 +51,34 @@ export const signup = async (req, res) => {
   }
 };
 
-
-
-
-
 export const login = async (req, res) => {
   try {
-        const { username, password } = req.body;
-        if (!username || !password) {
-          return res.status(400).json({ error: "All fields are required" });
-        }
-        const user = await User.findOne({username});
-        if (!user) {
-          return res.status(400).json({ error: "User not Found" });
-        }
-        if (user) {
-         const isPasswordCorrect = await bcrypt.compare(password, user.password);
-          if (!isPasswordCorrect) {
-            res.status(400).json({ error: "Invalid credentials" });
-          }
-        generateTokenAndSetCookie(user._id, res);
- res.status(200).json({ message: "Logged in successfully" });
-        }
-
+    const { username, password } = req.body;
+    if (!username || !password) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(400).json({ error: "User not Found" });
+    }
+    if (user) {
+      const isPasswordCorrect = await bcrypt.compare(password, user.password);
+      if (!isPasswordCorrect) {
+        res.status(400).json({ error: "Invalid credentials" });
+      }
+      generateTokenAndSetCookie(user._id, res);
+      res.status(200).json({
+        _id: user._id,
+        fullName: user.fullName,
+        username: user.username,
+        profilePic: user.profilePic,
+      });
+    }
   } catch (error) {
-     console.log("Login auth controller error", error);
+    console.log("Login auth controller error", error);
     res.status(500).json({ error: "Internal server error" });
   }
-}
-
-
-
+};
 
 export const logout = async (req, res) => {
   try {
@@ -85,7 +86,7 @@ export const logout = async (req, res) => {
 
     res.status(200).json({ message: "Logged out successfully" });
   } catch (error) {
-     console.log("Logout auth controller error", error);
-     res.status(500).json({ error: "Internal server error" });
+    console.log("Logout auth controller error", error);
+    res.status(500).json({ error: "Internal server error" });
   }
-}
+};

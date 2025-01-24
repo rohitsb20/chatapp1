@@ -1,35 +1,42 @@
-import { useEffect } from "react";
+
 import useConversation from "../../zustand/useConversation";
+import SearchInput from "../sidebar/SearchInput";
 import MessageInput from "./MessageInput";
 import Messages from "./Messages";
 import { TiMessages } from "react-icons/ti";
 
 
 const MessageContainer = () => {
-	const { selectedConversation, setSelectedConversation } = useConversation();
+	const { selectedConversation } = useConversation();
+	
+	
 
-	useEffect(() => {
-		// cleanup function (unmounts)
-		return () => setSelectedConversation(null);
-	}, [setSelectedConversation]);
+	
 
 	return (
-		<div className='md:min-w-[450px] flex flex-col'>
-			{!selectedConversation ? (
-				<NoChatSelected />
-			) : (
-				<>
-					{/* Header */}
-					<div className='border-b-2 shadow-sm  px-4 py-2 mb-2'>
-						<span className='label-text'>To:</span>{" "}
-						<span className='text-gray-900 font-bold'>jhon</span>
-					</div>
-					<Messages />
-					<MessageInput />
-				</>
-			)}
-		</div>
-	);
+    <div className="md:min-w-[450px] flex flex-col">
+      {!selectedConversation ? (
+        <NoChatSelected />
+      ) : (
+        <>
+          {/* Header */}
+          <div className="border-b-2 shadow-sm  px-4 py-2 mb-2">
+        
+            <div className="md:hidden block mb-4">
+              <SearchInput />
+            </div>
+            <hr />
+            <span className="label-text">To:</span>{" "}
+            <span className="text-gray-900 font-bold">
+              {selectedConversation.fullname}
+            </span>
+          </div>
+          <Messages />
+          <MessageInput />
+        </>
+      )}
+    </div>
+  );
 };
 export default MessageContainer;
 

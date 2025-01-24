@@ -3,10 +3,10 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import { Toaster } from "react-hot-toast";
-import { useAuthContext } from "./context/AuthContext";
+import  useContext  from "./zustand/useContext";
 
 function App() {
-  const { authUser } = useAuthContext();
+  const { authUser } = useContext();
 
   return (
     <>
