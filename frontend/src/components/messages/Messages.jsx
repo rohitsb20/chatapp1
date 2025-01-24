@@ -2,13 +2,19 @@
 import useGetMessages from "../../hooks/useGetMessages";
 import MessageSkeleton from "../skeletons/MessageSkeleton";
 import Message from "./Message";
+import { useEffect, useRef } from "react";
 
 
 const Messages = () => {
 	const { messages, loading } = useGetMessages();
 
 
-
+const lastMessageRef = useRef(null);
+  useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
 
 
 	return (
@@ -16,7 +22,7 @@ const Messages = () => {
       {!loading &&
         messages.length > 0 &&
         messages.map((message) => (
-          <div key={message._id}>
+          <div key={message._id} ref={lastMessageRef}>
             <Message message={message} />
           </div>
         ))}
