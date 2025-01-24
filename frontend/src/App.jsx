@@ -1,4 +1,4 @@
-import Feature from "../src/components/feature/Feature";
+import Home from "./pages/home/Home";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={authUser ? <Feature /> : <Navigate to={"/login"} />}
+            element={authUser ? <Home /> : <Navigate to={"/login"} />}
           />
           <Route
             path="/login"
