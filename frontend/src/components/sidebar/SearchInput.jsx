@@ -2,8 +2,8 @@
 import { IoSearchSharp } from "react-icons/io5";
 import { useState } from "react"
 import { toast } from "react-hot-toast";
-import { useConversation } from "../../zustand/useConversation";
-import { useGetConversation } from '../../hooks/useGetConversation';
+import  useConversation  from "../../zustand/useConversation";
+import  useGetConversation  from '../../hooks/useGetConversation';
 const SearchInput = () => {
 const [search, setSearch] = useState("");
 const { setSelectedConversation } = useConversation();
@@ -17,7 +17,7 @@ const handleSubmit = (e) => {
   }
 
   const conversation = conversations.find((c) =>
-    c.fullName.toLowerCase().includes(search.toLowerCase())
+    c.fullname.toLowerCase().includes(search.toLowerCase())
   );
 
   if (conversation) {
