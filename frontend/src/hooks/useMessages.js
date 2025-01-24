@@ -1,9 +1,9 @@
-import useState from 'react';
+import {useState} from 'react';
 import toast from 'react-hot-toast';
-import { useConversation } from './useConversation';
+import useConversation from '../zustand/useConversation'
 
 
-export const useMessages = () => {
+const useMessages = () => {
   const [loading, setLoading] = useState(true);
     const {messages, setMessages, selectedConversation} =  useConversation();
 
@@ -39,3 +39,4 @@ export const useMessages = () => {
  return { loading, sendMessage };   
 }
 
+export default useMessages;
