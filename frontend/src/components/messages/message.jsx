@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import useContext from "../../zustand/useContext";
+import useAuthContext from "../../zustand/useAuthContext";
 import useConversation from "../../zustand/useConversation";
 import { format } from "date-fns";
 const Message = ({ message }) => {
-  const { authUser } = useContext();
+  const { authUser } = useAuthContext();
 
   const { selectedConversation } = useConversation();
 

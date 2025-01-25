@@ -2,7 +2,7 @@ import {create} from 'zustand';
 
 
 
-const useContext = create((set) => ({
+const useAuthContext = create((set) => ({
      authUser: JSON.parse(localStorage.getItem("chat-user")) || null,
   setAuthUser: (user) => {
     localStorage.setItem("chat-user", JSON.stringify(user));
@@ -14,4 +14,4 @@ const useContext = create((set) => ({
   }
 }));
 
-export default useContext;
+export default useAuthContext;

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import  useContext from '../zustand/useContext';
+import  useAuthContext  from '../zustand/useAuthContext'
 
 const useLogin = () => {
-        const {setAuthUser} = useContext()
+        const {setAuthUser} = useAuthContext()
 
 
     const [loading, setLoading] = useState(false);

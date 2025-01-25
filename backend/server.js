@@ -12,6 +12,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 
+
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
@@ -22,5 +23,6 @@ app.use("/api/users", userRoutes);
 // });
 
 server.listen(3000, () => {
+  dbconnect();
   console.log(`Server is running on port 3000`);
 });
