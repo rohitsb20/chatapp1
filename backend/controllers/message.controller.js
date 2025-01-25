@@ -30,8 +30,8 @@ export const sendMessage = async (req, res) => {
       conversation.messages.push(newMessage._id);
     }
     // this runs in the background
-    // await conversation.save();
-    // await newMessage.save();
+     await conversation.save();
+     await newMessage.save();
 
     // this runs in parallel
 
