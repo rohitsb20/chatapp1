@@ -21,7 +21,7 @@ export const signup = async (req, res) => {
     }
     const hashpassword = await bcrypt.hash(password, 10);
     const BoyprofilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
-    const GirlprofilePic = `https://avatar.iran.liara.run/public/girld?username=${username}`;
+    const GirlprofilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`;
     const userExists = await User.findOne({ username });
     if (userExists) {
       return res.status(400).json({ error: "User already exists" });
