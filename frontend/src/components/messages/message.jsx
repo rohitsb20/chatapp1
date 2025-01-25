@@ -11,13 +11,10 @@ const Message = ({ message }) => {
 
   const chatClass = fromMe ? "justify-end" : "justify-start";
 
-  const chatUser = fromMe
-    ? authUser.username
-    : selectedConversation?.username;
+  const chatUser = fromMe ? authUser.username : selectedConversation?.username;
 
   const bubbleBgColor = fromMe ? "bg-sky-500" : "bg-sky-200";
- const formattedTime = format(new Date(message.createdAt), "p");
-
+  const formattedTime = format(new Date(message.createdAt), "p");
 
   const shakeClass = message.shouldShake ? "shake" : "";
 
