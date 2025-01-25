@@ -20,7 +20,7 @@ const lastMessageRef = useRef(null);
 
 
 	return (
-    <div className="px-4 flex-1 overflow-auto">
+    <div className="px-4 flex-1 overflow-auto max-h-[350px] md:max-h-[500px]">
       {!loading &&
         messages.length > 0 &&
         messages.map((message) => (
