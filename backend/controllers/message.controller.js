@@ -30,21 +30,22 @@ export const sendMessage = async (req, res) => {
       conversation.messages.push(newMessage._id);
     }
     // this runs in the background
-     await conversation.save();
-     await newMessage.save();
+     //await conversation.save();
+     // await newMessage.save();
 
     // this runs in parallel
 
     await Promise.all([conversation.save(), newMessage.save()]);
 
     //socket io
+    const receiverSocketId = getReceiverSocketId(receiverId);
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("getMessage", newMessage);
     }
 
     res.status(201).json(newMessage);
   } catch (error) {
-    console.log("error in send Message Controller");
+    console.log("error in send Message Controller", error.message);
 
     res.status(500).json({ error: "internal server error" });
   }
