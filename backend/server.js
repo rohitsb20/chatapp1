@@ -6,7 +6,8 @@ import authRoutes from './routes/auth.routes.js';
 import messageRoutes from './routes/message.routes.js';
 import userRoutes from "./routes/user.routes.js";
 
-const app = express();
+// const app = express();  moving in socket io and importing it from socket.js
+import {app} from './socket/socket.js'; // importing app from socket.js
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
