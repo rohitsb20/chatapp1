@@ -18,20 +18,19 @@ const Conversation = ({ conversation, lastIdx }) => {
 			`}
         onClick={() => setSelectedConversation(conversation)}
       >
-        <div className={`avatar  `}>
+        <div className={`avatar flex items-center space-x-1  `}>
           <div className="w-12 rounded-full">
             <img src={conversation.profilePicture} alt="user avatar" />
           </div>
-          {isOnline && (
-            <div className="absolute w-3 h-3 bg-green-500 rounded-full bottom-0 right-0"></div>
-          )}
+          <div
+            className={`w-2 h-2 rounded-full border-2
+   border-gray-800 ${isOnline ? "bg-green-400" : "bg-red-400"}`}
+          ></div>
         </div>
 
         <div className="md:flex flex-col flex-1 hidden ">
           <div className="flex gap-3 justify-between">
-            <p className="font-semibold text-black ">
-              {conversation.fullname}
-            </p>
+            <p className="font-semibold text-black ">{conversation.fullname}</p>
           </div>
         </div>
       </div>
