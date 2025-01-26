@@ -1,5 +1,5 @@
 
-import { IoSearchSharp } from "react-icons/io5";
+import { Search  } from "lucide-react";
 import { useState } from "react"
 import { toast } from "react-hot-toast";
 import  useConversation  from "../../zustand/useConversation";
@@ -29,8 +29,11 @@ const handleSubmit = (e) => {
 
 
 	return (
-    <div >
-      <form onSubmit={handleSubmit} className="flex items-center justify-between px-2 gap-2 shadow-sm rounded-full">
+    <div>
+      <form
+        onSubmit={handleSubmit}
+        className="flex items-center justify-between px-2 gap-2 shadow-sm rounded-full"
+      >
         <input
           type="text"
           placeholder="Search…"
@@ -38,8 +41,12 @@ const handleSubmit = (e) => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button type="submit" className="btn btn-circle  text-black border-2 rounded-full p-1">
-          <IoSearchSharp className="w-6 h-6 outline-none" />
+        <button
+          type="submit"
+          className="btn btn-circle 
+         text-black border-2  border-sky-400 rounded-full p-1"
+        >
+          <Search  className="w-5 h-5 outline-none" />
         </button>
       </form>
     </div>

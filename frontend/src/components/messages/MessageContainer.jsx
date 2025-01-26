@@ -3,14 +3,13 @@ import useConversation from "../../zustand/useConversation";
 import SearchInput from "../sidebar/SearchInput";
 import MessageInput from "./MessageInput";
 import Messages from "./Messages";
-import { TiMessages } from "react-icons/ti";
-
+import { MessageSquareHeart } from "lucide-react";
 
 const MessageContainer = () => {
   const { selectedConversation } = useConversation();
 
   return (
-    <div className="md:min-w-[450px] flex flex-col w-full">
+    <div className="md:min-w-[450px] flex flex-col w-full ">
       {!selectedConversation ? (
         <NoChatSelected />
       ) : (
@@ -21,9 +20,14 @@ const MessageContainer = () => {
               <SearchInput />
             </div>
 
-            <div className="flex items-center gap-2 border-b-2 p-1">
-              <span className="label-text">To :</span>{" "}
-              <span className="text-gray-900 font-bold">
+            <div className="flex items-center gap-2 border-b border-slate-500 p-1">
+              <img
+                className="w-8 rounded-full"
+                src={selectedConversation.profilePicture}
+                alt="user avatar"
+              />{" "}
+              <span className="label-text"> To :</span>{" "}
+              <span className="text-gray-900 font-bold uppercase">
                 {selectedConversation.fullname}
               </span>
             </div>
@@ -39,10 +43,6 @@ export default MessageContainer;
 
 const NoChatSelected = () => {
   const { authUser } = useAuthContext();
-  console.log(authUser);
-
-  
-  
 
   return (
     <div
@@ -54,9 +54,9 @@ const NoChatSelected = () => {
 			 md:text-xl text-black font-semibold flex
 			  flex-col items-center gap-2"
       >
-        <p>Welcome 👋 {authUser.username} </p>
-        <p>Select a chat to start messaging</p>
-        <TiMessages className="text-3xl md:text-6xl text-center" />
+        <p>Hello 😃 {authUser.username} </p>
+        <p>Choose a conversation to begin chatting</p>
+        <MessageSquareHeart className="text-3xl md:text-6xl text-center" />
       </div>
     </div>
   );
